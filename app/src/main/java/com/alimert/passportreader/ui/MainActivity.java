@@ -110,6 +110,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         read = findViewById(R.id.btn_read);
         read.setOnClickListener(this);
 
+        setData();
+
     }
 
     private void setMrzData(MRZInfo mrzInfo) {
@@ -120,6 +122,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         passportNumber = mrzInfo.getDocumentNumber();
         expirationDate = mrzInfo.getDateOfExpiry();
         birthDate = mrzInfo.getDateOfBirth();
+    }
+
+    private void setData() {
+        adapter = NfcAdapter.getDefaultAdapter(this);
+        mainLayout.setVisibility(View.GONE);
+        imageLayout.setVisibility(View.VISIBLE);
+
+        passportNumber = "XXXXXX";
+        expirationDate = "YYMMDD";
+        birthDate = "YYMMDD";
     }
 
     private void readCard() {
