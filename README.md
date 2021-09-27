@@ -1,5 +1,12 @@
-# E-Passport NFC Reader Android Application
+# E-Passport-NFC-Reader-Android
 
-- MRZ Data Scan with Google MLKit
+This repository modified this [EPassportNFCReader](https://github.com/alimertozdemir/EPassportNFCReader) for using the data from input instead of scanning the MrzData.
 
-<img src="/sample/sample.gif" alt="Sample" width="350"/>
+## Step to run and test
+
+1. Please considering set this information at the `setData()` method in `MainActivity` for decoding the encrypted NFC data:
+   - passportNumber
+   - expirationDate
+   - birthDate
+2. Build & run on your device.
+3. Now you can start to scan your passport from NFC without doing Mrz scanning.
