@@ -48,6 +48,15 @@
                 android:layout_marginTop="@dimen/activity_vertical_margin"
                 android:src="@drawable/photo" />
 
+            <ImageView
+                android:id="@+id/view_signature"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:src="@drawable/photo" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

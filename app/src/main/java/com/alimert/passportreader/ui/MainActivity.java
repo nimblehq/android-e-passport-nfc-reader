@@ -86,6 +86,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button scanIdCard, scanPassport, read;
     private TextView tvResult;
     private ImageView ivPhoto;
+    private ImageView ivSignature;
 
     private String passportNumber, expirationDate , birthDate;
     private DocType docType;
@@ -102,6 +103,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         loadingLayout = findViewById(R.id.loading_layout);
         imageLayout = findViewById(R.id.image_layout);
         ivPhoto = findViewById(R.id.view_photo);
+        ivSignature = findViewById(R.id.view_signature);
         tvResult = findViewById(R.id.text_result);
         scanIdCard = findViewById(R.id.btn_scan_id_card);
         scanIdCard.setOnClickListener(this);
@@ -372,8 +374,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     if (!signatureImageInfos.isEmpty()) {
                         DisplayedImageInfo displayedImageInfo = signatureImageInfos.iterator().next();
                         Image image = ImageUtil.getImage(MainActivity.this, displayedImageInfo);
-                        personDetails.setPortraitImage(image.getBitmapImage());
-                        personDetails.setPortraitImageBase64(image.getBase64Image());
+                        personDetails.setSignature(image.getBitmapImage());
+                        personDetails.setSignatureBase64(image.getBase64Image());
                     }
 
                 } catch (Exception e) {
@@ -443,8 +445,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void setResultToView(EDocument eDocument) {
 
         Bitmap image = ImageUtil.scaleImage(eDocument.getPersonDetails().getFaceImage());
-
         ivPhoto.setImageBitmap(image);
+
+        Bitmap signature = ImageUtil.scaleImage(eDocument.getPersonDetails().getSignature());
+        ivSignature.setImageBitmap(signature);
 
         String result  = "NAME: " + eDocument.getPersonDetails().getName() + "\n";
         result += "SURNAME: " + eDocument.getPersonDetails().getSurname() + "\n";
@@ -456,6 +460,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         result += "NATIONALITY: " + eDocument.getPersonDetails().getNationality() + "\n";
         result += "DOC TYPE: " + eDocument.getDocType().name() + "\n";
         result += "ISSUER AUTHORITY: " + eDocument.getPersonDetails().getIssuerAuthority() + "\n";
+        result += "ADDRESS: " + eDocument.getAdditionalPersonDetails().getPermanentAddress() + "\n";
 
         tvResult.setText(result);
     }
